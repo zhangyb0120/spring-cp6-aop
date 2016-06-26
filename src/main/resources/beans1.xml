@@ -23,4 +23,12 @@
 		  p:optimize="true"
 	/>
 
+	<bean id="transactionManager" class="com.zyb.advice.TransactionManager" />
+	<bean id="forumExceptionServiceTarget" class="com.zyb.proxy.ForumExceptionService" />
+	<bean id="forumExceptionService" class="org.springframework.aop.framework.ProxyFactoryBean"
+		  p:interceptorNames="transactionManager"
+		  p:target-ref="forumExceptionServiceTarget"
+		  p:proxyTargetClass="true"
+	/>
+
 </beans>
